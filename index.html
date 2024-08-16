@@ -1,7 +1,7 @@
 <html><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Salon de Coiffure Élégance - Accueil</title>
+<title>Nos Services - Salon de Coiffure Élégance</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
@@ -81,41 +81,68 @@
     transform: scaleX(1);
   }
   
-  .hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') no-repeat center center;
-    background-size: cover;
-    position: relative;
-  }
-  
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  
-  .hero-content {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .hero h1 {
-    font-size: 4em;
-    margin-bottom: 20px;
+  .section-title {
     font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-top: 100px;
   }
   
-  .hero p {
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 20px auto 0;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  .service-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  
+  .service-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+  
+  .service-title {
     font-size: 1.5em;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  .service-description {
+    margin-bottom: 20px;
+  }
+  
+  .service-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
   }
   
   .btn {
@@ -132,6 +159,8 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
   }
   
   .btn::before {
@@ -156,82 +185,6 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   }
   
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5em;
-    text-align: center;
-    margin-bottom: 40px;
-    position: relative;
-  }
-  
-  .section-title::after {
-    content: '';
-    display: block;
-    width: 100px;
-    height: 3px;
-    background: var(--primary-color);
-    margin: 20px auto 0;
-  }
-  
-  .services-preview {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 50px;
-  }
-  
-  .service-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
-    width: 250px;
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-  
-  .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  }
-  
-  .service-icon {
-    font-size: 3em;
-    margin-bottom: 20px;
-    color: var(--primary-color);
-  }
-  
-  .testimonials {
-    margin-top: 50px;
-  }
-  
-  .testimonial-slider {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .testimonial-slide {
-    flex: 0 0 100%;
-    scroll-snap-align: start;
-    padding: 20px;
-  }
-  
-  .testimonial-content {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
-  }
-  
-  .testimonial-author {
-    font-style: italic;
-    margin-top: 10px;
-  }
-  
   footer {
     background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
@@ -239,31 +192,63 @@
     margin-top: 50px;
   }
   
-  .newsletter {
-    margin-top: 50px;
-    text-align: center;
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
   }
   
-  .newsletter form {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    color: #333;
   }
   
-  .newsletter input[type="email"] {
-    padding: 10px;
-    width: 300px;
-    border: none;
-    border-radius: 5px 0 0 5px;
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
   }
   
-  .newsletter button {
-    padding: 10px 20px;
-    background: var(--primary-color);
-    border: none;
-    color: white;
-    border-radius: 0 5px 5px 0;
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
     cursor: pointer;
+  }
+  
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-form label {
+    margin-top: 10px;
+  }
+  
+  .modal-form input,
+  .modal-form select,
+  .modal-form textarea {
+    margin-bottom: 15px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .modal-form button {
+    align-self: flex-start;
   }
   
   @media (max-width: 768px) {
@@ -276,112 +261,123 @@
       margin: 10px 0;
     }
     
-    .hero h1 {
-      font-size: 3em;
-    }
-    
-    .hero p {
-      font-size: 1.2em;
-    }
-    
-    .services-preview {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .service-card {
-      width: 80%;
-    }
-    
-    .newsletter input[type="email"] {
-      width: 200px;
+    .services-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
-
 </head>
 <body>
   <header>
     <nav>
       <ul>
-        <li><a href="https://mechacweb.github.io/">Accueil</a></li>
+        <li><a href="index.html">Accueil</a></li>
         <li><a href="services.html">Services</a></li>
-        <li><a href="apropos.html">À Propos</a></li>
+        <li><a href="about.html">À Propos</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section id="home" class="hero">
-      <div class="hero-content">
-        <h1>Salon de Coiffure Élégance</h1>
-        <p>Révélez votre beauté naturelle</p>
-        <a href="#services" class="btn">Découvrez nos services</a>
-      </div>
-    </section>
-
-    <section id="services" class="container">
+    <section id="services">
       <h2 class="section-title">Nos Services</h2>
-      <div class="services-preview">
+      <div class="services-grid">
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-cut"></i></div>
-          <h3>Coupes</h3>
-          <p>Des coupes sur mesure pour tous les styles</p>
+          <div>
+            <div class="service-icon"><i class="fas fa-cut"></i></div>
+            <h3 class="service-title">Coupe Classique</h3>
+            <p class="service-description">Une coupe adaptée à votre style et morphologie, incluant un shampoing et un brushing. Nos coiffeurs expérimentés sauront mettre en valeur vos traits et votre personnalité.</p>
+            <p class="service-price">À partir de 45€</p>
+          </div>
+          <button class="btn" onclick="openReservationModal('Coupe Classique', 'Coiffeur')">Réserver</button>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-palette"></i></div>
-          <h3>Colorations</h3>
-          <p>Des couleurs vibrantes et durables</p>
+          <div>
+            <div class="service-icon"><i class="fas fa-palette"></i></div>
+            <h3 class="service-title">Coloration</h3>
+            <p class="service-description">Une coloration professionnelle pour sublimer votre chevelure, avec des produits de qualité. Choisissez parmi une large gamme de teintes ou optez pour un balayage sur-mesure.</p>
+            <p class="service-price">À partir de 60€</p>
+          </div>
+          <button class="btn" onclick="openReservationModal('Coloration', 'Coloriste')">Réserver</button>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-spa"></i></div>
-          <h3>Soins</h3>
-          <p>Des traitements revitalisants pour vos cheveux</p>
+          <div>
+            <div class="service-icon"><i class="fas fa-gem"></i></div>
+            <h3 class="service-title">Coiffure de Mariage</h3>
+            <p class="service-description">Une coiffure élégante pour votre grand jour, avec essai inclus. Nos spécialistes en coiffure de mariage créeront le look parfait pour votre cérémonie et votre réception.</p>
+            <p class="service-price">À partir de 120€</p>
+          </div>
+          <button class="btn" onclick="openReservationModal('Coiffure de Mariage', 'Styliste de Mariage')">Réserver</button>
+        </div>
+        <div class="service-card">
+          <div>
+            <div class="service-icon"><i class="fas fa-spa"></i></div>
+            <h3 class="service-title">Soin Profond</h3>
+            <p class="service-description">Un soin revitalisant pour nourrir et réparer vos cheveux en profondeur. Idéal pour les cheveux secs, abîmés ou traités chimiquement. Redonnez vie et éclat à votre chevelure.</p>
+            <p class="service-price">À partir de 40€</p>
+          </div>
+          <button class="btn" onclick="openReservationModal('Soin Profond', 'Technicien Capillaire')">Réserver</button>
+        </div>
+        <div class="service-card">
+          <div>
+            <div class="service-icon"><i class="fas fa-fire"></i></div>
+            <h3 class="service-title">Lissage Brésilien</h3>
+            <p class="service-description">Un traitement lissant longue durée pour des cheveux soyeux et faciles à coiffer. Dites adieu aux frisottis et profitez d'une chevelure disciplinée pendant plusieurs mois.</p>
+            <p class="service-price">À partir de 150€</p>
+          </div>
+          <button class="btn" onclick="openReservationModal('Lissage Brésilien', 'Spécialiste Lissage')">Réserver</button>
+        </div>
+        <div class="service-card">
+          <div>
+            <div class="service-icon"><i class="fas fa-male"></i></div>
+            <h3 class="service-title">Barbier</h3>
+            <p class="service-description">Un service complet pour hommes incluant coupe, taille de barbe et soins du visage. Profitez d'un moment de détente et ressortez avec un look impeccable.</p>
+            <p class="service-price">À partir de 35€</p>
+          </div>
+          <button class="btn" onclick="openReservationModal('Barbier', 'Barbier')">Réserver</button>
         </div>
       </div>
-      <div style="text-align: center; margin-top: 30px;">
-        <a href="services.html" class="btn">Voir tous nos services</a>
-      </div>
-    </section>
-
-    <section id="testimonials" class="testimonials container">
-      <h2 class="section-title">Ce que disent nos clients</h2>
-      <div class="testimonial-slider">
-        <div class="testimonial-slide">
-          <div class="testimonial-content">
-            <p>"Une expérience incroyable ! Le personnel est attentif et talentueux. Je recommande vivement !"</p>
-            <p class="testimonial-author">- Marie L.</p>
-          </div>
-        </div>
-        <div class="testimonial-slide">
-          <div class="testimonial-content">
-            <p>"J'adore ma nouvelle coupe ! Le salon a une ambiance chaleureuse et le service est impeccable."</p>
-            <p class="testimonial-author">- Thomas D.</p>
-          </div>
-        </div>
-        <div class="testimonial-slide">
-          <div class="testimonial-content">
-            <p>"Les coloristes sont de vrais artistes. Ma couleur est exactement ce que je voulais !"</p>
-            <p class="testimonial-author">- Sophie M.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="newsletter" class="newsletter container">
-      <h2 class="section-title">Restez informé</h2>
-      <p>Inscrivez-vous à notre newsletter pour recevoir nos dernières offres et actualités</p>
-      <form>
-        <input type="email" placeholder="Votre adresse e-mail" required>
-        <button type="submit" class="btn">S'inscrire</button>
-      </form>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2023 Salon de Coiffure Élégance. Tous droits réservés.</p>
   </footer>
+
+  <div id="reservationModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Réserver un rendez-vous</h2>
+      <form class="modal-form">
+        <label for="service">Service :</label>
+        <input type="text" id="service" name="service" readonly>
+        
+        <label for="stylist">Professionnel :</label>
+        <input type="text" id="stylist" name="stylist" readonly>
+        
+        <label for="name">Nom complet :</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="phone">Téléphone :</label>
+        <input type="tel" id="phone" name="phone" required>
+        
+        <label for="date">Date souhaitée :</label>
+        <input type="date" id="date" name="date" required>
+        
+        <label for="time">Heure souhaitée :</label>
+        <input type="time" id="time" name="time" required>
+        
+        <label for="comments">Commentaires supplémentaires :</label>
+        <textarea id="comments" name="comments" rows="3"></textarea>
+        
+        <button type="submit" class="btn">Confirmer la réservation</button>
+      </form>
+    </div>
+  </div>
 
   <script>
     $(document).ready(function(){
@@ -394,30 +390,12 @@
         }
       });
 
-      // Smooth scroll for navigation links
-      $('a[href^="#"]').on('click', function(event) {
-        var target = $(this.getAttribute('href'));
-        if( target.length ) {
-          event.preventDefault();
-          $('html, body').stop().animate({
-            scrollTop: target.offset().top - 100
-          }, 1000);
-        }
-      });
-
       // GSAP Animations
       gsap.registerPlugin(ScrollTrigger);
 
-      gsap.from(".hero-content", {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        delay: 0.5
-      });
-
       gsap.from(".service-card", {
         scrollTrigger: {
-          trigger: ".services-preview",
+          trigger: ".services-grid",
           start: "top 80%",
         },
         opacity: 0,
@@ -425,28 +403,34 @@
         stagger: 0.2,
         duration: 1
       });
+    });
 
-      gsap.from(".testimonial-slide", {
-        scrollTrigger: {
-          trigger: ".testimonials",
-          start: "top 80%",
-        },
-        opacity: 0,
-        x: 100,
-        stagger: 0.2,
-        duration: 1
-      });
+    // Modal functionality
+    var modal = document.getElementById("reservationModal");
+    var span = document.getElementsByClassName("close")[0];
 
-      // Testimonial Slider
-      setInterval(function() {
-        const $slider = $('.testimonial-slider');
-        const $firstSlide = $slider.find('.testimonial-slide:first');
-        const width = $firstSlide.width();
-        
-        $slider.animate({scrollLeft: '+=' + width}, 1000, function() {
-          $slider.scrollLeft(0).append($firstSlide);
-        });
-      }, 5000);
+    function openReservationModal(service, stylist) {
+      modal.style.display = "block";
+      document.getElementById("service").value = service;
+      document.getElementById("stylist").value = stylist;
+    }
+
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Form submission
+    document.querySelector('.modal-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Here you would typically send the form data to your server
+      alert("Merci pour votre réservation ! Nous vous contacterons bientôt pour confirmer.");
+      modal.style.display = "none";
     });
   </script>
 </body>
